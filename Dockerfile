@@ -4,7 +4,7 @@
 
 FROM python:3.12-slim AS builder
 
-WORKDIR /src
+WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
@@ -25,7 +25,7 @@ RUN find /install -name "tests" -type d -exec rm -rf {} + \
 
 FROM python:3.12-slim
 
-WORKDIR /src
+WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq5 \
     && rm -rf /var/lib/apt/lists/*
@@ -37,4 +37,4 @@ ENV PYTHONBUFFERED=1 \
 PYTHONWRITERBYTECODE=1 \
 PIP_NO_CACHE_DIR=1
 
-CMD ["uvicorn", "src.main:src", "--host", "0.0.0.0", "--port", "800"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "800"]
