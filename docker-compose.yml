@@ -6,7 +6,7 @@ services:
     container_name: real_estate_backend
     env_file:
       - .env
-    command: poetry run uvicorn src.backend.main:app --host 0.0.0.0 --port 8000
+    command: poetry run uvicorn src.app.main:app --host 0.0.0.0 --port 8000
     ports:
       - "${BACKEND_PORT}:8000"
     depends_on:
@@ -16,6 +16,7 @@ services:
         condition: service_healthy
     volumes:
       - ./src:/app/src
+      - ./migrations:/app/migrations
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
@@ -31,7 +32,7 @@ services:
     container_name: real_estate_scraper
     env_file:
       - .env
-    command: poetry run python src/scraper/main.py
+    command: poetry run python src/scrapers/main.py
     depends_on:
       db:
         condition: service_healthy
