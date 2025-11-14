@@ -1,7 +1,7 @@
 import datetime
 from typing import Optional
 
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field, HttpUrl, field_serializer
 
 
 class PropertyCreate(BaseModel):
@@ -13,6 +13,10 @@ class PropertyCreate(BaseModel):
     )
     rooms: Optional[int] = Field(None, description="Number of rooms of the property")
     description: Optional[str] = Field(None, description="Description of the property")
+
+    @field_serializer("url")
+    def serialize_url(self, url: HttpUrl, _info):
+        return str(url)
 
     class Config:
         json_schema_extra = {
@@ -28,6 +32,14 @@ class PropertyCreate(BaseModel):
 
 class PropertyRead(BaseModel):
     id: int = Field(..., description="Id of the property")
+    url: str = Field(..., description="Url to property")
+    title: str = Field(..., description="Listing title")
+    price: float = Field(..., description="Price of the property in PLN")
+    area: Optional[float] = Field(
+        None, description="Area of the property in square metres"
+    )
+    rooms: Optional[int] = Field(None, description="Number of rooms of the property")
+    description: Optional[str] = Field(None, description="Description of the property")
     created_at: datetime.datetime
 
     class Config:
