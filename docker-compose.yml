@@ -2,7 +2,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/backend/Dockerfile
     container_name: real_estate_backend
     env_file:
       - .env
@@ -28,10 +28,12 @@ services:
   scraper:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/scraper/Dockerfile
     container_name: real_estate_scraper
     env_file:
       - .env
+    environment:
+      - PYTHONPATH=/app
     command: poetry run python src/scrapers/main.py
     depends_on:
       db:

@@ -80,6 +80,7 @@ class Property(Base):
     )
     is_active: Mapped[bool] = mapped_column(Boolean)
 
+    province: Mapped[Optional[str]] = mapped_column(String, index=True)
     city: Mapped[Optional[str]] = mapped_column(String, index=True)
     district: Mapped[Optional[str]] = mapped_column(String, index=True)
     address: Mapped[Optional[str]] = mapped_column(String)

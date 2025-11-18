@@ -18,7 +18,8 @@ COPY pyproject.toml poetry.lock ./
 
 RUN poetry config virtualenvs.create false
 
-RUN poetry install --no-root --no-interaction --no-ansi
+RUN poetry install --no-root --no-interaction --no-ansi --with backend
+
 
 # =========================
 #  STAGE 2: Runtime
@@ -36,6 +37,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/local /usr/local
+
 COPY . .
 
 CMD ["uvicorn", "src.app.main:app", "--host", "0.0.0.0", "--port", "800"]

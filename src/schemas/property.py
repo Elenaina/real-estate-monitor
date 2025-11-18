@@ -18,6 +18,7 @@ class PropertyCreate(BaseModel):
     is_active: bool = Field(
         ..., description="Whether the property listing is currently active"
     )
+    province: Optional[str] = Field(None, description="Listing province")
     city: Optional[str] = Field(None, description="City where the property is located")
     district: Optional[str] = Field(None, description="District within the city")
     address: Optional[str] = Field(None, description="Street address of the property")
