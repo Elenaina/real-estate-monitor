@@ -1,12 +1,11 @@
-# 🏠 Real Estate Monitor
+# Real Estate Monitor
 
 Backend application for collecting and exposing real estate listings data.
 
 The project combines web scraping with a REST API to store and provide structured property data.
 
----
 
-## 🚀 Features
+## eatures
 
 - Scraping real estate listings from external sources  
 - Parsing and normalizing property data  
@@ -15,9 +14,9 @@ The project combines web scraping with a REST API to store and provide structure
 - Health check endpoint  
 - Dockerized setup  
 
----
 
-## 🛠 Tech Stack
+
+## Tech Stack
 
 - Python  
 - FastAPI  
@@ -27,9 +26,8 @@ The project combines web scraping with a REST API to store and provide structure
 - Docker & Docker Compose  
 - Poetry  
 
----
 
-## ⚙️ Running the project
+## Running the project
 
 ### Local (Poetry)
 
