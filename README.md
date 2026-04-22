@@ -5,7 +5,7 @@ Backend application for collecting and exposing real estate listings data.
 The project combines web scraping with a REST API to store and provide structured property data.
 
 
-## eatures
+## Features
 
 - Scraping real estate listings from external sources  
 - Parsing and normalizing property data  
